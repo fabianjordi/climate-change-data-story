@@ -1,24 +1,36 @@
 import os
 import pathlib
-
-# Update interval
-GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 60000) # 60 seconds TODO: change to 60seconds
-WEBAPP_TITLE = "Wetterstation für SeglerInnen"
-
-# InfluxDB
-DB_HOST = 'localhost'
-DB_PORT = 8086
-DB_NAME = 'meteorology'
-DB_USER = 'root'
-DB_PASSWORD = 'root'
+import logging
 
 
-# Station names to gather information from
-STATIONS = {
-    "mythenquai": "Mythenquai",
-    "tiefenbrunnen": "Tiefenbrunnen",
-}
+class Config:
+    # PostgreSQL Parameters
+    db_params = {
+        'provider': 'postgres',
+        'host': 'localhost',
+        'database': 'climatechange',
+        'user': 'fabianjordi',
+        'password': 'xagri8-vyndYw-qihpyq',
+    }
+
+    logging.basicConfig(level=logging.DEBUG)
+    sql_debug = False
+
+    # Update interval
+    GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 60000)  # 60 seconds TODO: change to 60seconds
+    WEBAPP_TITLE = "Wetterstation für SeglerInnen"
+
+    # data_folder = '.' + os.sep + 'data'
+    PATH = pathlib.Path(__file__).parent
+    DATA_PATH = PATH.joinpath("data").resolve()
+
+    def get_db_params(self):
+        return self.db_params
+
+    def get_data_folder(self):
+        return self.DATA_PATH
 
 
-PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("data").resolve()
+config = Config()
+
+
