@@ -9,6 +9,7 @@ import urllib
 import time
 from bs4 import BeautifulSoup
 from io import StringIO
+import posixpath
 import logging
 from application.helpers import *
 from pony import orm
@@ -23,20 +24,82 @@ def setup_climatic_variable_dimension_table():
 
     variables_names_and_units = (
         {
-            'display_name': 'Niederschlag',
-            'name': 'precipitation',
+            'display_name': 'Globalstrahlung (Monatsmittel)',
+            'name': 'gre000m0',
+            'measurement_unit': 'W / m≤',
+        }, {
+            'display_name': 'Gesamtschneehöhe (Monatsmittel)',
+            'name': 'hto000m0',
+            'measurement_unit': 'cm',
+        }, {
+            'display_name': 'Gesamtbewölkung (Monatsmittel)',
+            'name': 'nto000m0',
+            'measurement_unit': '%',
+        }, {
+            'display_name': 'Luftdruck auf Stationshöhe (QFE) (Monatsmittel)',
+            'name': 'prestam0',
+            'measurement_unit': 'hPa',
+        }, {
+            'display_name': 'Niederschlag (Monatssumme)',
+            'name': 'rre150m0',
             'measurement_unit': 'mm',
         }, {
-            'display_name': 'Temperatur',
-            'name': 'temperature',
+            'display_name': 'Sonnenscheindauer; Monatssumme',
+            'name': 'sre000m0',
+            'measurement_unit': 'min',
+        }, {
+            'display_name': 'Lufttemperatur 2m über Boden (Monatsmittel)',
+            'name': 'tre200m0',
             'measurement_unit': '°C',
+        }, {
+            'display_name': 'Lufttemperatur 2m über Boden (absolutes Monatsminimum)',
+            'name': 'tre200mn',
+            'measurement_unit': '°C',
+        }, {
+            'display_name': 'Lufttemperatur 2m über Boden (absolutes Monatsmaximum)',
+            'name': 'tre200mx',
+            'measurement_unit': '°C',
+        }, {
+            'display_name': 'Relative Luftfeuchtigkeit 2m über Boden (Monatsmittel)',
+            'name': 'ure200m',
+            'measurement_unit': '%',
         }
     )
+
+
+
+
 
     with orm.db_session:
         for variable in variables_names_and_units:
             cvd = ClimaticVariableDimension(**variable)
             orm.commit()
+
+
+def import_swiss_weather_stations():
+
+    logging.info('Start importing swiss weather stations …')
+
+    file = posixpath.join(config.get_data_folder(), "stations_CH2018_meta.csv")
+    # STATION_NAME,NAT_ABBR,LATITUDE,LONGITUDE,XCOORD,YCOORD,ELEVATION
+    column_names = ['name', 'abbr', 'latitude', 'longitude', 'xcoord', 'ycoord', 'altitude']
+    df = pd.read_csv(file, delimiter=',', header=0, names=column_names)
+
+    ws_data = {}
+
+    with orm.db_session:
+        for row in df.itertuples():
+            ws_data['name'] = row.name
+            ws_data['abbr'] = row.abbr
+            ws_data['latitude'] = row.latitude
+            ws_data['longitude'] = row.longitude
+            ws_data['altitude'] = row.altitude
+
+            ws = WeatherStation(**ws_data)
+            ws_data.clear()
+            orm.commit()
+
+    logging.info('Finished importing swiss weather stations.')
 
 
 def import_meteoschweiz_homogene_messreihen_ab_1864():
@@ -87,10 +150,11 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
 
                 for j, line in enumerate(lines):
 
-                    # Grab station informations and fill pandas dataFrame
+                    # Grab station informations
                     # Get name
                     if line.startswith('Station:'):
                         name = line.split(':')[1].strip()
+                        ws_data['abbr'] = stations_names[i]
                         ws_data['name'] = name
 
                     # Get station altitude
@@ -107,8 +171,12 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
                         ws_data['latitude'] = latitude
 
                     # Store the weather station
-                    if ws_data.keys() >= {'name', 'longitude', 'latitude'}:
-                        ws = WeatherStation(**ws_data)
+                    if ws_data.keys() >= {'abbr', 'name', 'longitude', 'latitude'}:
+
+                        ws = WeatherStation.get(abbr=ws_data['abbr'])
+                        if ws is None:
+                            ws = WeatherStation(**ws_data)
+
                         ws_data.clear()
 
                     # Get date
@@ -127,7 +195,7 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
 
                                 # Generate date information
                                 historic_date = dt.date(year=int(linely_items[0]), month=int(linely_items[1]), day=1)
-                                # td_data['date'] = date
+                                td_data['date'] = historic_date
                                 td_data['day'] = historic_date.day
                                 td_data['week_number'] = historic_date.isocalendar()[1]
                                 td_data['month'] = historic_date.month
@@ -135,7 +203,7 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
                                 td_data['year'] = historic_date.year
 
                                 td = TimeDimension(
-                                    # date=td_data['date'],
+                                    date=td_data['date'],
                                     day=td_data['day'],
                                     week_number=td_data['week_number'],
                                     month=td_data['month'],
@@ -150,11 +218,13 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
                                         cf_data['temperature'] = linely_items[2]
 
                                         try:
+                                            cvd = ClimaticVariableDimension.get(name='ure200m')
+
                                             cf = ClimaticFacts(
                                                 measured_value=float(cf_data['temperature']),
                                                 weather_station=ws,
                                                 time_dimension=td,
-                                                climatic_variable_dimension=2,
+                                                climatic_variable_dimension=cvd.id,
                                             )
                                         except ValueError:
                                             logging.warning('Temperature value is not of type float')
@@ -164,11 +234,13 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
                                         cf_data['precipitation'] = linely_items[3]
 
                                         try:
+                                            cvd = ClimaticVariableDimension.get(name='rre150m0')
+
                                             cf = ClimaticFacts(
                                                 measured_value=float(cf_data['precipitation']),
                                                 weather_station=ws,
                                                 time_dimension=td,
-                                                climatic_variable_dimension=1,
+                                                climatic_variable_dimension=cvd.id,
                                             )
                                         except ValueError:
                                             logging.warning('Precipitation value is not of type float')
@@ -181,13 +253,63 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
         logging.error(e)
 
 
-orm.set_sql_debug(config.sql_debug)
-db.bind(**config.db_params)
-db.generate_mapping(create_tables=True)
-db.drop_all_tables(with_all_data=True)
-db.create_tables()
+def import_nbcn_monthly_values():
+    """
+    NBCN monthly values
 
-setup_climatic_variable_dimension_table()
-import_meteoschweiz_homogene_messreihen_ab_1864()
+    1864-2018   https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-monatswerte/NBCN-m_1864-2018.csv
+    2019        https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-monatswerte/NBCN-m.csv
+    """
+    logging.info('Start importing NBCN monthly data …')
 
-db.disconnect()
+    file = posixpath.join(config.get_data_folder(), "NBCN-m_1864-2018.csv")
+    # stn;time;gre000m0;hto000m0;nto000m0;prestam0;rre150m0;sre000m0;tre200m0;tre200mn;tre200mx;ure200m0
+    df = pd.read_csv(file, delimiter=';', header=0)
+
+    ws_data = {}
+    cvd_data = {}
+    td_data = {}
+    cf_data = {}
+
+    with orm.db_session:
+        for row in df.itertuples():
+            ws_data['abbr'] = row.stn
+
+            td_data['date'] = row.time
+            td_data['day'] = row.time
+            td_data['week_number'] = row.time
+            td_data['month'] = row.time
+            td_data['season'] = row.time
+            td_data['year'] = row.time
+
+            cf_data['gre000m0'] = row.gre000m0
+
+
+            ws_data['abbr'] = row.abbr
+            ws_data['latitude'] = row.latitude
+            ws_data['longitude'] = row.longitude
+            ws_data['altitude'] = row.altitude
+
+            print(ws_data)
+            ws = WeatherStation(**ws_data)
+            ws_data.clear()
+            orm.commit()
+
+    logging.info('Finished importing NBCN monthly data.')
+
+if __name__ == '__main__':
+
+    """if ClimaticFacts.select().first() is None:
+        populate_database()"""
+
+    orm.set_sql_debug(config.SQL_DEBUG)
+    db.bind(**config.db_params)
+    db.generate_mapping(create_tables=True)
+    db.drop_all_tables(with_all_data=True)
+    db.create_tables()
+
+    setup_climatic_variable_dimension_table()
+    import_swiss_weather_stations()
+    import_meteoschweiz_homogene_messreihen_ab_1864()
+
+    db.disconnect()

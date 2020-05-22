@@ -2,4 +2,4 @@
 # -*- coding: utf-8 -*-
 
 # Import required libraries
-from config import *
+from application.config import *

@@ -3,7 +3,7 @@ import pathlib
 import logging
 
 
-class Config:
+class Config(object):
     # PostgreSQL Parameters
     db_params = {
         'provider': 'postgres',
@@ -13,12 +13,9 @@ class Config:
         'password': 'xagri8-vyndYw-qihpyq',
     }
 
-    logging.basicConfig(level=logging.DEBUG)
-    sql_debug = False
-
     # Update interval
     GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 60000)  # 60 seconds TODO: change to 60seconds
-    WEBAPP_TITLE = "Wetterstation für SeglerInnen"
+    WEBAPP_TITLE = "Climate Change Data Story"
 
     # data_folder = '.' + os.sep + 'data'
     PATH = pathlib.Path(__file__).parent
@@ -31,6 +28,17 @@ class Config:
         return self.DATA_PATH
 
 
-config = Config()
+class ProductionConfig(Config):
+    DEBUG = False
+    SQL_DEBUG = False
+
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQL_DEBUG = True
+    logging.basicConfig(level=logging.DEBUG)
+
+
+config = DevelopmentConfig()
 
 

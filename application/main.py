@@ -17,8 +17,14 @@ import logging
 #import_meteoschweiz_homogene_messreihen_ab_1864(config)
 
 
+
+
 # Main
 if __name__ == "__main__":
+    logging.info('Start app…')
+
+    # app.run(debug=True)
+
     logging.info('App started')
     #app = App()
     #app.run()
