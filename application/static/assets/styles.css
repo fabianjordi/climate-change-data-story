@@ -48,6 +48,13 @@ ins {
     font-style: inherit;
     text-decoration: inherit;
 }
+a {
+    color: #418CFF;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
 
 /* Header styling */
 .header {
@@ -74,6 +81,38 @@ ins {
 }
 .header__title span:last-of-type {
 
+}
+.footer {
+    font-family: 'Assistant', sans-serif;
+    font-size: 0.85rem;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns:
+        [full-start] minmax(1rem, 1fr) [main-start] minmax(0, 48rem) [main-end] minmax(1rem, 1fr) [full-end];
+}
+.footer__inner {
+    max-width: 600px;
+    padding: 1.5rem 0;
+    margin: auto;
+    position: relative;
+    grid-column: main;
+    text-align: center;
+}
+.footer__inner::before,
+.footer__inner::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    left: 50%;
+    margin-left: -25%;
+    height: 1px;
+    background-color: rgb(230, 230, 230);
+}
+.footer__inner::after {
+    top: auto;
+    bottom: 0;
 }
 
 /* Basic styling */

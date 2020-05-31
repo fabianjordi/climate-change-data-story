@@ -1,6 +1,5 @@
 import pandas as pd
 import datetime as dt
-import numpy as np
 import os
 import math
 import re
@@ -36,7 +35,7 @@ def setup_climatic_variable_dimension_table():
             'name': 'nto000m0',
             'measurement_unit': '%',
         }, {
-            'display_name': 'Luftdruck auf Stationshöhe (QFE) (Monatsmittel)',
+            'display_name': 'Luftdruck auf Stationshöhe (QFE, Monatsmittel)',
             'name': 'prestam0',
             'measurement_unit': 'hPa',
         }, {
@@ -44,7 +43,7 @@ def setup_climatic_variable_dimension_table():
             'name': 'rre150m0',
             'measurement_unit': 'mm',
         }, {
-            'display_name': 'Sonnenscheindauer; Monatssumme',
+            'display_name': 'Sonnenscheindauer (Monatssumme)',
             'name': 'sre000m0',
             'measurement_unit': 'min',
         }, {
@@ -61,14 +60,10 @@ def setup_climatic_variable_dimension_table():
             'measurement_unit': '°C',
         }, {
             'display_name': 'Relative Luftfeuchtigkeit 2m über Boden (Monatsmittel)',
-            'name': 'ure200m',
+            'name': 'ure200m0',
             'measurement_unit': '%',
         }
     )
-
-
-
-
 
     with orm.db_session:
         for variable in variables_names_and_units:
@@ -218,7 +213,7 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
                                         cf_data['temperature'] = linely_items[2]
 
                                         try:
-                                            cvd = ClimaticVariableDimension.get(name='ure200m')
+                                            cvd = ClimaticVariableDimension.get(name='tre200m0')
 
                                             cf = ClimaticFacts(
                                                 measured_value=float(cf_data['temperature']),
@@ -247,6 +242,7 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
                         orm.commit()
                         break
 
+        # db.flush()
         logging.info('Finished importing data of Meteo Schweiz (Homogene Messreihe ab 1864)')
 
     except requests.exceptions.HTTPError as e:
@@ -262,40 +258,158 @@ def import_nbcn_monthly_values():
     """
     logging.info('Start importing NBCN monthly data …')
 
-    file = posixpath.join(config.get_data_folder(), "NBCN-m_1864-2018.csv")
-    # stn;time;gre000m0;hto000m0;nto000m0;prestam0;rre150m0;sre000m0;tre200m0;tre200mn;tre200mx;ure200m0
-    df = pd.read_csv(file, delimiter=';', header=0)
+    files = [
+        {
+            'path': 'nbcn/nbcn-monatswerte/NBCN-m.csv',
+            'timeframe': '2019',
+            'timeformat': '%Y%m',
+            'skiprows': 1,
+        }, {
+            'path': 'nbcn/nbcn-monatswerte/NBCN-m_1864-2018.csv',
+            'timeframe': '1864-2018',
+            'timeformat': '%Y%m%d',
+            'skiprows': 0,
+        }
+    ]
 
-    ws_data = {}
-    cvd_data = {}
-    td_data = {}
-    cf_data = {}
+    for file in files:
 
-    with orm.db_session:
-        for row in df.itertuples():
-            ws_data['abbr'] = row.stn
-
-            td_data['date'] = row.time
-            td_data['day'] = row.time
-            td_data['week_number'] = row.time
-            td_data['month'] = row.time
-            td_data['season'] = row.time
-            td_data['year'] = row.time
-
-            cf_data['gre000m0'] = row.gre000m0
+        file_path = posixpath.join(config.get_data_folder(), file['path'])
+        # column_names = ['stn', 'time', 'gre000m0', 'hto000m0', 'nto000m0', 'prestam0', 'rre150m0', 'sre000m0', 'tre200m0', 'tre200mn', 'tre200mx', 'ure200m0']
+        df = pd.read_csv(file_path, delimiter=';', skiprows=file['skiprows'], header=0)
+        df = df.dropna()
+        print(df)
+        df = df[df.stn.str.contains('stn') == False] # Remove multiple repeating headers
 
 
-            ws_data['abbr'] = row.abbr
-            ws_data['latitude'] = row.latitude
-            ws_data['longitude'] = row.longitude
-            ws_data['altitude'] = row.altitude
+        # print(df.columns.values)
 
-            print(ws_data)
-            ws = WeatherStation(**ws_data)
-            ws_data.clear()
-            orm.commit()
+        td_data = {}
+        cf_data = {}
 
+        with orm.db_session:
+            for row in df.itertuples():
+                print('row', row)
+                historic_date = dt.datetime.strptime(str(row.time), file['timeformat'])
+                print('historic_date', historic_date)
+                td_data['date'] = historic_date
+                td_data['day'] = historic_date.day
+                td_data['week_number'] = historic_date.isocalendar()[1]
+                td_data['month'] = historic_date.month
+                td_data['season'] = get_season(historic_date)
+                td_data['year'] = historic_date.year
+
+                td = TimeDimension.get(date=historic_date)
+                if td is None:
+                    td = TimeDimension(**td_data)
+                    orm.commit()
+
+                ws = WeatherStation.get(abbr=row.stn)
+
+                # - = empty value
+                if row.gre000m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='gre000m0')
+
+                    cf_data['measured_value'] = row.gre000m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.hto000m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='hto000m0')
+
+                    cf_data['measured_value'] = row.hto000m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.nto000m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='nto000m0')
+
+                    cf_data['measured_value'] = row.nto000m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.prestam0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='prestam0')
+
+                    cf_data['measured_value'] = row.prestam0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.rre150m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='rre150m0')
+
+                    cf_data['measured_value'] = row.rre150m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.sre000m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='sre000m0')
+
+                    cf_data['measured_value'] = row.sre000m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.tre200m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='tre200m0')
+
+                    cf_data['measured_value'] = row.tre200m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.tre200mn != '-':
+                    cvd = ClimaticVariableDimension.get(name='tre200mn')
+
+                    cf_data['measured_value'] = row.tre200mn
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.tre200mx != '-':
+                    cvd = ClimaticVariableDimension.get(name='tre200mx')
+
+                    cf_data['measured_value'] = row.tre200mx
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+                if row.ure200m0 != '-':
+                    cvd = ClimaticVariableDimension.get(name='ure200m0')
+
+                    cf_data['measured_value'] = row.ure200m0
+                    cf_data['time_dimension'] = td.id
+                    cf_data['climatic_variable_dimension'] = cvd.id
+                    cf_data['weather_station'] = ws.id
+                    cf = ClimaticFacts(**cf_data)
+                    orm.commit()
+
+    # db.flush()
     logging.info('Finished importing NBCN monthly data.')
+
 
 if __name__ == '__main__':
 
@@ -308,8 +422,15 @@ if __name__ == '__main__':
     db.drop_all_tables(with_all_data=True)
     db.create_tables()
 
+    # Setup and imports
     setup_climatic_variable_dimension_table()
+
     import_swiss_weather_stations()
-    import_meteoschweiz_homogene_messreihen_ab_1864()
+
+    # No need if importing the following data
+    # since data is already stored in the dababase
+    # import_meteoschweiz_homogene_messreihen_ab_1864()
+
+    import_nbcn_monthly_values()
 
     db.disconnect()

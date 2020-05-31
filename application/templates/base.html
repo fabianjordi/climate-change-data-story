@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+
+    <meta charset="utf-8">
+    <title>Climate Change – Data Story</title>
+    <style>
+        @import url('https://necolas.github.io/normalize.css/8.0.1/normalize.css');
+        @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;800&family=Rufina&display=swap');
+        @import url('{{ url_for('static', filename='assets/styles.css') }}');
+    </style>
+    <script src="https://d3js.org/d3.v5.js"></script>
+
+    <header class="header">
+        <div class="header__title"><span>Climate Change</span> – <span>Data Story</span></div>
+    </header>
+
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            Die Daten, die den Grafiken zugrunde liegen, stammen aus täglichen Messungen der NBCN-Stationen
+            (Swiss National Basic Climate Network) und können auf der <a href="https://www.meteoschweiz.admin.ch/home/mess-und-prognosesysteme/bodenstationen/schweizer-klimamessnetz.html" target="_blank">Internetseite von Meteo Schweiz</a> frei heruntergeladen werden.
+            Aus den Messdaten wurden für jedes Jahr die Monats- und Jahresmittelwerte der Temperatur, der relativen Feuchtigkeit und der Anzahl Sonnenstunden berechnet.
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='assets/main.js') }}"></script>
+
+</html>

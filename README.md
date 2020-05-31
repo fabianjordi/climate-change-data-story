@@ -1,6 +1,4 @@
-# Weather station for sailors
-
-## Getting Started
+# Climate Change
 
 ### Installation on a Raspberry Pi
 
@@ -53,7 +51,7 @@ Selecting or hovering over data in a plot will update the other plots ('cross-fi
 
 The documentation is saved as a Jupyter Notebook and as a PDF file as well.
 You can find them in
- [Challenge_HS19C5_Wettermonitor_Dokumentation.ipynb](Notebook/Documentation.ipynb) 
+ [Challenge_HS19C5_Wettermonitor_Dokumentation.ipynb](Notebook/EDA for Data Story.ipynb) 
  and [Challenge_HS19C5_Wettermonitor_Dokumentation.pdf](Notebook/Challenge_HS19C5_Wettermonitor_Dokumentation.pdf) respectively.
 
 Under the [test folder](Notebook/tests) you can find some Jupyter Notebooks that were used to create the functions for the forecasts as well as

@@ -1,0 +1,11 @@
+
+NBCN monthly values
+
+
+Download URL  
+   
+    1864-2018   https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-monatswerte/NBCN-m_1864-2018.csv 
+    2019        https://data.geo.admin.ch/ch.meteoschweiz.klima/nbcn-monatswerte/NBCN-m.csv 
+
+
+

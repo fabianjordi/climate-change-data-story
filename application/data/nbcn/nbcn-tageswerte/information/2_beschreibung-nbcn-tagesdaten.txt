@@ -1,0 +1,62 @@
+stn;yyyyMMdd;gre000d0;hto000d0;nto000d0;prestad0;rre150d0;sre000d0;tre200d0;tre200dn;tre200dx;ure200d0
+
+stn                                       NAT ABBR (siehe unten)
+yyyy                                      Jahr
+MM                                        Monat
+dd                                        Tag
+
+Zeitangaben in UTC: 00:40 UTC = 02:40 Sommerzeit
+                              = 01:40 Winterzeit
+
+Fehlende Messwerte                        -
+
+Stationskoordinaten:
+----------
+stn                                       Name                        Länge/Breite                              KM-Koordinaten                            Höhe
+
+ALT                                       Altdorf                     8°37'/46°53'                              690180/193564                             438
+ANT                                       Andermatt                   8°35'/46°38'                              687444/165044                             1438
+RAG                                       Bad Ragaz                   9°30'/47°01'                              756910/209350                             496
+BAS                                       Basel / Binningen           7°35'/47°32'                              610908/265611                             316
+BER                                       Bern / Zollikofen           7°28'/46°59'                              601933/204409                             552
+CHD                                       Château-d'Oex               7°08'/46°29'                              577040/147654                             1028
+CHM                                       Chaumont                    6°59'/47°03'                              565060/211006                             1136
+GSB                                       Col du Grand St-Bernard     7°10'/45°52'                              579192/79753                              2472
+DAV                                       Davos                       9°51'/46°49'                              783518/187458                             1594
+ELM                                       Elm                         9°11'/46°55'                              732265/198425                             957
+ENG                                       Engelberg                   8°25'/46°49'                              674160/186069                             1035
+GVE                                       Genève / Cointrin           6°08'/46°15'                              498904/122631                             410
+GRC                                       Grächen                     7°50'/46°12'                              630738/116062                             1605
+GRH                                       Grimsel Hospiz              8°20'/46°34'                              668583/158215                             1980
+JUN                                       Jungfraujoch                7°59'/46°33'                              641930/155275                             3580
+CDF                                       La Chaux-de-Fonds           6°48'/47°05'                              550919/214861                             1017
+OTL                                       Locarno / Monti             8°47'/46°10'                              704172/114342                             366
+LUG                                       Lugano                      8°58'/46°00'                              717873/95884                              273
+LUZ                                       Luzern                      8°18'/47°02'                              665543/209849                             454
+MER                                       Meiringen                   8°10'/46°44'                              655844/175930                             588
+NEU                                       Neuchâtel                   6°57'/47°00'                              563086/205559                             485
+PAY                                       Payerne                     6°57'/46°49'                              562131/184611                             490
+SAM                                       Samedan                     9°53'/46°32'                              787249/155685                             1708
+SAE                                       Säntis                      9°21'/47°15'                              744183/234918                             2502
+SBE                                       S. Bernardino               9°11'/46°28'                              734115/147294                             1638
+SIA                                       Segl-Maria                  9°46'/46°26'                              778574/144976                             1804
+SIO                                       Sion                        7°20'/46°13'                              591633/118583                             482
+STG                                       St. Gallen                  9°24'/47°26'                              747865/254588                             775
+SMA                                       Zürich / Fluntern           8°34'/47°23'                              685116/248065                             555
+
+
+Parameter:
+----------
+                                          Einheit                                   Beschreibung
+gre000d0                                  W/m²                                      Globalstrahlung; Tagesmittel
+hto000d0                                  cm                                        Gesamtschneehöhe; Morgenmessung von 6 UTC
+nto000d0                                  %                                         Gesamtbewölkung; Tagesmittel
+prestad0                                  hPa                                       Luftdruck auf Stationshöhe (QFE); Tagesmittel
+rre150d0                                  mm                                        Niederschlag; Tagessumme 6 UTC - 6 UTC Folgetag
+sre000d0                                  min                                       Sonnenscheindauer; Tagessumme
+tre200d0                                  °C                                        Lufttemperatur 2 m über Boden; Tagesmittel
+tre200dn                                  °C                                        Lufttemperatur 2 m über Boden; Tagesminimum
+tre200dx                                  °C                                        Lufttemperatur 2 m über Boden; Tagesmaximum
+ure200d0                                  %                                         Relative Luftfeuchtigkeit 2 m über Boden; Tagesmittel
+
+

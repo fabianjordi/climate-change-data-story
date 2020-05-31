@@ -71,7 +71,7 @@ def get_temperatures():
                                                         climaticvariabledimension AS cvd
                                                         ON cvd.id = cf.climatic_variable_dimension
                                             WHERE ws.abbr = 'BAS' 
-                                            AND cvd.name = 'ure200m') t""")
+                                            AND cvd.name = 'tre200m0') t""")
 
     return get_json(climatic_facts)
 
@@ -94,9 +94,10 @@ def get_average_month_temperatures2():
                                                     INNER JOIN
                                                     climaticvariabledimension AS cvd
                                                     ON cvd.id = cf.climatic_variable_dimension
-                                            WHERE cvd.name = 'ure200m' 
-                                            AND EXTRACT(MONTH FROM date) = 7
-                                            AND EXTRACT(YEAR FROM date) != date_part('year', CURRENT_DATE)
+                                            WHERE cvd.name = 'tre200m0' 
+                                                AND EXTRACT(MONTH FROM date) = 7
+                                                AND EXTRACT(YEAR FROM date) != date_part('year', CURRENT_DATE)
+                                                AND EXTRACT(YEAR FROM date) >= 1864
                                             /*AND td.year != date_part('year', CURRENT_DATE)*/
                                             GROUP BY td.date, td.year, td.month
                                             ORDER BY td.year) t""")
@@ -122,8 +123,9 @@ def get_average_temperatures():
                                                     INNER JOIN
                                                     climaticvariabledimension AS cvd
                                                     ON cvd.id = cf.climatic_variable_dimension
-                                            WHERE cvd.name = 'ure200m'
-                                            AND td.year != date_part('year', CURRENT_DATE)
+                                            WHERE cvd.name = 'tre200m0'
+                                                AND td.year != date_part('year', CURRENT_DATE)
+                                                AND EXTRACT(YEAR FROM date) >= 1864
                                             GROUP BY td.year
                                             ORDER BY td.year) t""")
 
@@ -149,9 +151,10 @@ def get_temperatures_per_month_and_year():
                                                     INNER JOIN
                                                     climaticvariabledimension AS cvd
                                                     ON cvd.id = cf.climatic_variable_dimension
-                                            WHERE cvd.name = 'ure200m' 
-                                            AND EXTRACT(MONTH FROM date) < 13
-                                            AND EXTRACT(YEAR FROM date) != date_part('year', CURRENT_DATE)
+                                            WHERE cvd.name = 'tre200m0' 
+                                                AND EXTRACT(MONTH FROM date) < 13
+                                                AND EXTRACT(YEAR FROM date) != date_part('year', CURRENT_DATE)
+                                                AND EXTRACT(YEAR FROM date) >= 1864
                                             GROUP BY td.date, td.month
                                             ORDER BY td.date) t""")
 

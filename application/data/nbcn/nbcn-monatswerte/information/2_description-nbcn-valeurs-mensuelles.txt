@@ -1,0 +1,355 @@
+stn;yyyyMMdd;gre000m0;hto000m0;nto000m0;prestam0;rre150m0;sre000m0;tre200m0;tre200mn;tre200mx;ure200m0
+
+stn                                       NAT ABBR (voir ci-dessous)
+y                                         Année
+M                                         Mois
+d                                         Jour
+
+Heures en UTC: 00:40 UTC = 02:40 Heure d'été
+                         = 01:40 Heure d'hiver
+
+Valeurs numériques manquantes             -
+
+Stations Coordinates:
+---------
+stn                                       Nom                         Longitude/Latitude                        Coordonnées-KM                            Altitude
+
+ALT                                       Altdorf                     8°37'/46°53'                              690180/193564                             438
+ANT                                       Andermatt                   8°35'/46°38'                              687444/165044                             1438
+RAG                                       Bad Ragaz                   9°30'/47°01'                              756910/209350                             496
+BAS                                       Basel / Binningen           7°35'/47°32'                              610908/265611                             316
+BER                                       Bern / Zollikofen           7°28'/46°59'                              601933/204409                             552
+CHD                                       Château-d'Oex               7°08'/46°29'                              577040/147654                             1028
+CHM                                       Chaumont                    6°59'/47°03'                              565060/211006                             1136
+GSB                                       Col du Grand St-Bernard     7°10'/45°52'                              579192/79753                              2472
+DAV                                       Davos                       9°51'/46°49'                              783518/187458                             1594
+ELM                                       Elm                         9°11'/46°55'                              732265/198425                             957
+ENG                                       Engelberg                   8°25'/46°49'                              674160/186069                             1035
+GVE                                       Genève / Cointrin           6°08'/46°15'                              498904/122631                             410
+GRC                                       Grächen                     7°50'/46°12'                              630738/116062                             1605
+GRH                                       Grimsel Hospiz              8°20'/46°34'                              668583/158215                             1980
+JUN                                       Jungfraujoch                7°59'/46°33'                              641930/155275                             3580
+CDF                                       La Chaux-de-Fonds           6°48'/47°05'                              550919/214861                             1017
+OTL                                       Locarno / Monti             8°47'/46°10'                              704172/114342                             366
+LUG                                       Lugano                      8°58'/46°00'                              717873/95884                              273
+LUZ                                       Luzern                      8°18'/47°02'                              665543/209849                             454
+MER                                       Meiringen                   8°10'/46°44'                              655844/175930                             588
+NEU                                       Neuchâtel                   6°57'/47°00'                              563086/205559                             485
+PAY                                       Payerne                     6°57'/46°49'                              562131/184611                             490
+SAM                                       Samedan                     9°53'/46°32'                              787249/155685                             1708
+SAE                                       Säntis                      9°21'/47°15'                              744183/234918                             2502
+SBE                                       S. Bernardino               9°11'/46°28'                              734115/147294                             1638
+SIA                                       Segl-Maria                  9°46'/46°26'                              778574/144976                             1804
+SIO                                       Sion                        7°20'/46°13'                              591633/118583                             482
+STG                                       St. Gallen                  9°24'/47°26'                              747865/254588                             775
+SMA                                       Zürich / Fluntern           8°34'/47°23'                              685116/248065                             555
+
+Stations:
+---------
+stn                                       Nom                         Paramètres                                Datasource
+ALT                                       Altdorf                     gre000m0                                  MeteoSchweiz
+ALT                                       Altdorf                     hto000m0                                  MeteoSchweiz
+ALT                                       Altdorf                     nto000m0                                  MeteoSchweiz
+ALT                                       Altdorf                     prestam0                                  MeteoSchweiz
+ALT                                       Altdorf                     rre150m0                                  MeteoSchweiz
+ALT                                       Altdorf                     sre000m0                                  MeteoSchweiz
+ALT                                       Altdorf                     tre200m0                                  MeteoSchweiz
+ALT                                       Altdorf                     tre200mn                                  MeteoSchweiz
+ALT                                       Altdorf                     tre200mx                                  MeteoSchweiz
+ALT                                       Altdorf                     ure200m0                                  MeteoSchweiz
+ANT                                       Andermatt                   gre000m0                                  MeteoSchweiz
+ANT                                       Andermatt                   hto000m0                                  MeteoSchweiz
+ANT                                       Andermatt                   nto000m0                                  MeteoSchweiz
+ANT                                       Andermatt                   prestam0                                  MeteoSchweiz
+ANT                                       Andermatt                   rre150m0                                  MeteoSchweiz
+ANT                                       Andermatt                   sre000m0                                  MeteoSchweiz
+ANT                                       Andermatt                   tre200m0                                  MeteoSchweiz
+ANT                                       Andermatt                   tre200mn                                  MeteoSchweiz
+ANT                                       Andermatt                   tre200mx                                  MeteoSchweiz
+ANT                                       Andermatt                   ure200m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   gre000m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   hto000m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   nto000m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   prestam0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   rre150m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   sre000m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   tre200m0                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   tre200mn                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   tre200mx                                  MeteoSchweiz
+RAG                                       Bad Ragaz                   ure200m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           gre000m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           hto000m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           nto000m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           prestam0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           rre150m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           sre000m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           tre200m0                                  MeteoSchweiz
+BAS                                       Basel / Binningen           tre200mn                                  MeteoSchweiz
+BAS                                       Basel / Binningen           tre200mx                                  MeteoSchweiz
+BAS                                       Basel / Binningen           ure200m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           gre000m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           hto000m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           nto000m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           prestam0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           rre150m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           sre000m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           tre200m0                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           tre200mn                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           tre200mx                                  MeteoSchweiz
+BER                                       Bern / Zollikofen           ure200m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               gre000m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               hto000m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               nto000m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               prestam0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               rre150m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               sre000m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               tre200m0                                  MeteoSchweiz
+CHD                                       Château-d'Oex               tre200mn                                  MeteoSchweiz
+CHD                                       Château-d'Oex               tre200mx                                  MeteoSchweiz
+CHD                                       Château-d'Oex               ure200m0                                  MeteoSchweiz
+CHM                                       Chaumont                    gre000m0                                  MeteoSchweiz
+CHM                                       Chaumont                    hto000m0                                  MeteoSchweiz
+CHM                                       Chaumont                    nto000m0                                  MeteoSchweiz
+CHM                                       Chaumont                    prestam0                                  MeteoSchweiz
+CHM                                       Chaumont                    rre150m0                                  MeteoSchweiz
+CHM                                       Chaumont                    sre000m0                                  MeteoSchweiz
+CHM                                       Chaumont                    tre200m0                                  MeteoSchweiz
+CHM                                       Chaumont                    tre200mn                                  MeteoSchweiz
+CHM                                       Chaumont                    tre200mx                                  MeteoSchweiz
+CHM                                       Chaumont                    ure200m0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     gre000m0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     hto000m0                                  Parameter not measured at this station
+GSB                                       Col du Grand St-Bernard     nto000m0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     prestam0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     rre150m0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     sre000m0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     tre200m0                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     tre200mn                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     tre200mx                                  MeteoSchweiz
+GSB                                       Col du Grand St-Bernard     ure200m0                                  MeteoSchweiz
+DAV                                       Davos                       gre000m0                                  MeteoSchweiz
+DAV                                       Davos                       hto000m0                                  MeteoSchweiz
+DAV                                       Davos                       nto000m0                                  MeteoSchweiz
+DAV                                       Davos                       prestam0                                  MeteoSchweiz
+DAV                                       Davos                       rre150m0                                  MeteoSchweiz
+DAV                                       Davos                       sre000m0                                  MeteoSchweiz
+DAV                                       Davos                       tre200m0                                  MeteoSchweiz
+DAV                                       Davos                       tre200mn                                  MeteoSchweiz
+DAV                                       Davos                       tre200mx                                  MeteoSchweiz
+DAV                                       Davos                       ure200m0                                  MeteoSchweiz
+ELM                                       Elm                         gre000m0                                  MeteoSchweiz
+ELM                                       Elm                         hto000m0                                  MeteoSchweiz
+ELM                                       Elm                         nto000m0                                  MeteoSchweiz
+ELM                                       Elm                         prestam0                                  MeteoSchweiz
+ELM                                       Elm                         rre150m0                                  MeteoSchweiz
+ELM                                       Elm                         sre000m0                                  MeteoSchweiz
+ELM                                       Elm                         tre200m0                                  MeteoSchweiz
+ELM                                       Elm                         tre200mn                                  MeteoSchweiz
+ELM                                       Elm                         tre200mx                                  MeteoSchweiz
+ELM                                       Elm                         ure200m0                                  MeteoSchweiz
+ENG                                       Engelberg                   gre000m0                                  MeteoSchweiz
+ENG                                       Engelberg                   hto000m0                                  MeteoSchweiz
+ENG                                       Engelberg                   nto000m0                                  MeteoSchweiz
+ENG                                       Engelberg                   prestam0                                  MeteoSchweiz
+ENG                                       Engelberg                   rre150m0                                  MeteoSchweiz
+ENG                                       Engelberg                   sre000m0                                  MeteoSchweiz
+ENG                                       Engelberg                   tre200m0                                  MeteoSchweiz
+ENG                                       Engelberg                   tre200mn                                  MeteoSchweiz
+ENG                                       Engelberg                   tre200mx                                  MeteoSchweiz
+ENG                                       Engelberg                   ure200m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           gre000m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           hto000m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           nto000m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           prestam0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           rre150m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           sre000m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           tre200m0                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           tre200mn                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           tre200mx                                  MeteoSchweiz
+GVE                                       Genève / Cointrin           ure200m0                                  MeteoSchweiz
+GRC                                       Grächen                     gre000m0                                  MeteoSchweiz
+GRC                                       Grächen                     hto000m0                                  MeteoSchweiz
+GRC                                       Grächen                     nto000m0                                  MeteoSchweiz
+GRC                                       Grächen                     prestam0                                  MeteoSchweiz
+GRC                                       Grächen                     rre150m0                                  MeteoSchweiz
+GRC                                       Grächen                     sre000m0                                  MeteoSchweiz
+GRC                                       Grächen                     tre200m0                                  MeteoSchweiz
+GRC                                       Grächen                     tre200mn                                  MeteoSchweiz
+GRC                                       Grächen                     tre200mx                                  MeteoSchweiz
+GRC                                       Grächen                     ure200m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              gre000m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              hto000m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              nto000m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              prestam0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              rre150m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              sre000m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              tre200m0                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              tre200mn                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              tre200mx                                  MeteoSchweiz
+GRH                                       Grimsel Hospiz              ure200m0                                  MeteoSchweiz
+JUN                                       Jungfraujoch                gre000m0                                  MeteoSchweiz
+JUN                                       Jungfraujoch                hto000m0                                  Parameter not measured at this station
+JUN                                       Jungfraujoch                nto000m0                                  MeteoSchweiz
+JUN                                       Jungfraujoch                prestam0                                  MeteoSchweiz
+JUN                                       Jungfraujoch                rre150m0                                  Parameter not measured at this station
+JUN                                       Jungfraujoch                sre000m0                                  MeteoSchweiz
+JUN                                       Jungfraujoch                tre200m0                                  MeteoSchweiz
+JUN                                       Jungfraujoch                tre200mn                                  MeteoSchweiz
+JUN                                       Jungfraujoch                tre200mx                                  MeteoSchweiz
+JUN                                       Jungfraujoch                ure200m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           gre000m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           hto000m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           nto000m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           prestam0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           rre150m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           sre000m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           tre200m0                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           tre200mn                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           tre200mx                                  MeteoSchweiz
+CDF                                       La Chaux-de-Fonds           ure200m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             gre000m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             hto000m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             nto000m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             prestam0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             rre150m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             sre000m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             tre200m0                                  MeteoSchweiz
+OTL                                       Locarno / Monti             tre200mn                                  MeteoSchweiz
+OTL                                       Locarno / Monti             tre200mx                                  MeteoSchweiz
+OTL                                       Locarno / Monti             ure200m0                                  MeteoSchweiz
+LUG                                       Lugano                      gre000m0                                  MeteoSchweiz
+LUG                                       Lugano                      hto000m0                                  MeteoSchweiz
+LUG                                       Lugano                      nto000m0                                  MeteoSchweiz
+LUG                                       Lugano                      prestam0                                  MeteoSchweiz
+LUG                                       Lugano                      rre150m0                                  MeteoSchweiz
+LUG                                       Lugano                      sre000m0                                  MeteoSchweiz
+LUG                                       Lugano                      tre200m0                                  MeteoSchweiz
+LUG                                       Lugano                      tre200mn                                  MeteoSchweiz
+LUG                                       Lugano                      tre200mx                                  MeteoSchweiz
+LUG                                       Lugano                      ure200m0                                  MeteoSchweiz
+LUZ                                       Luzern                      gre000m0                                  MeteoSchweiz
+LUZ                                       Luzern                      hto000m0                                  MeteoSchweiz
+LUZ                                       Luzern                      nto000m0                                  MeteoSchweiz
+LUZ                                       Luzern                      prestam0                                  MeteoSchweiz
+LUZ                                       Luzern                      rre150m0                                  MeteoSchweiz
+LUZ                                       Luzern                      sre000m0                                  MeteoSchweiz
+LUZ                                       Luzern                      tre200m0                                  MeteoSchweiz
+LUZ                                       Luzern                      tre200mn                                  MeteoSchweiz
+LUZ                                       Luzern                      tre200mx                                  MeteoSchweiz
+LUZ                                       Luzern                      ure200m0                                  MeteoSchweiz
+MER                                       Meiringen                   gre000m0                                  MeteoSchweiz
+MER                                       Meiringen                   hto000m0                                  MeteoSchweiz
+MER                                       Meiringen                   nto000m0                                  MeteoSchweiz
+MER                                       Meiringen                   prestam0                                  MeteoSchweiz
+MER                                       Meiringen                   rre150m0                                  MeteoSchweiz
+MER                                       Meiringen                   sre000m0                                  MeteoSchweiz
+MER                                       Meiringen                   tre200m0                                  MeteoSchweiz
+MER                                       Meiringen                   tre200mn                                  MeteoSchweiz
+MER                                       Meiringen                   tre200mx                                  MeteoSchweiz
+MER                                       Meiringen                   ure200m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   gre000m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   hto000m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   nto000m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   prestam0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   rre150m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   sre000m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   tre200m0                                  MeteoSchweiz
+NEU                                       Neuchâtel                   tre200mn                                  MeteoSchweiz
+NEU                                       Neuchâtel                   tre200mx                                  MeteoSchweiz
+NEU                                       Neuchâtel                   ure200m0                                  MeteoSchweiz
+PAY                                       Payerne                     gre000m0                                  MeteoSchweiz
+PAY                                       Payerne                     hto000m0                                  MeteoSchweiz
+PAY                                       Payerne                     nto000m0                                  MeteoSchweiz
+PAY                                       Payerne                     prestam0                                  MeteoSchweiz
+PAY                                       Payerne                     rre150m0                                  MeteoSchweiz
+PAY                                       Payerne                     sre000m0                                  MeteoSchweiz
+PAY                                       Payerne                     tre200m0                                  MeteoSchweiz
+PAY                                       Payerne                     tre200mn                                  MeteoSchweiz
+PAY                                       Payerne                     tre200mx                                  MeteoSchweiz
+PAY                                       Payerne                     ure200m0                                  MeteoSchweiz
+SAM                                       Samedan                     gre000m0                                  MeteoSchweiz
+SAM                                       Samedan                     hto000m0                                  MeteoSchweiz
+SAM                                       Samedan                     nto000m0                                  MeteoSchweiz
+SAM                                       Samedan                     prestam0                                  MeteoSchweiz
+SAM                                       Samedan                     rre150m0                                  MeteoSchweiz
+SAM                                       Samedan                     sre000m0                                  MeteoSchweiz
+SAM                                       Samedan                     tre200m0                                  MeteoSchweiz
+SAM                                       Samedan                     tre200mn                                  MeteoSchweiz
+SAM                                       Samedan                     tre200mx                                  MeteoSchweiz
+SAM                                       Samedan                     ure200m0                                  MeteoSchweiz
+SAE                                       Säntis                      gre000m0                                  MeteoSchweiz
+SAE                                       Säntis                      hto000m0                                  MeteoSchweiz
+SAE                                       Säntis                      nto000m0                                  MeteoSchweiz
+SAE                                       Säntis                      prestam0                                  MeteoSchweiz
+SAE                                       Säntis                      rre150m0                                  MeteoSchweiz
+SAE                                       Säntis                      sre000m0                                  MeteoSchweiz
+SAE                                       Säntis                      tre200m0                                  MeteoSchweiz
+SAE                                       Säntis                      tre200mn                                  MeteoSchweiz
+SAE                                       Säntis                      tre200mx                                  MeteoSchweiz
+SAE                                       Säntis                      ure200m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               gre000m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               hto000m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               nto000m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               prestam0                                  MeteoSchweiz
+SBE                                       S. Bernardino               rre150m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               sre000m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               tre200m0                                  MeteoSchweiz
+SBE                                       S. Bernardino               tre200mn                                  MeteoSchweiz
+SBE                                       S. Bernardino               tre200mx                                  MeteoSchweiz
+SBE                                       S. Bernardino               ure200m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  gre000m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  hto000m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  nto000m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  prestam0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  rre150m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  sre000m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  tre200m0                                  MeteoSchweiz
+SIA                                       Segl-Maria                  tre200mn                                  MeteoSchweiz
+SIA                                       Segl-Maria                  tre200mx                                  MeteoSchweiz
+SIA                                       Segl-Maria                  ure200m0                                  MeteoSchweiz
+SIO                                       Sion                        gre000m0                                  MeteoSchweiz
+SIO                                       Sion                        hto000m0                                  MeteoSchweiz
+SIO                                       Sion                        nto000m0                                  MeteoSchweiz
+SIO                                       Sion                        prestam0                                  MeteoSchweiz
+SIO                                       Sion                        rre150m0                                  MeteoSchweiz
+SIO                                       Sion                        sre000m0                                  MeteoSchweiz
+SIO                                       Sion                        tre200m0                                  MeteoSchweiz
+SIO                                       Sion                        tre200mn                                  MeteoSchweiz
+SIO                                       Sion                        tre200mx                                  MeteoSchweiz
+SIO                                       Sion                        ure200m0                                  MeteoSchweiz
+STG                                       St. Gallen                  gre000m0                                  MeteoSchweiz
+STG                                       St. Gallen                  hto000m0                                  MeteoSchweiz
+STG                                       St. Gallen                  nto000m0                                  MeteoSchweiz
+STG                                       St. Gallen                  prestam0                                  MeteoSchweiz
+STG                                       St. Gallen                  rre150m0                                  MeteoSchweiz
+STG                                       St. Gallen                  sre000m0                                  MeteoSchweiz
+STG                                       St. Gallen                  tre200m0                                  MeteoSchweiz
+STG                                       St. Gallen                  tre200mn                                  MeteoSchweiz
+STG                                       St. Gallen                  tre200mx                                  MeteoSchweiz
+STG                                       St. Gallen                  ure200m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           gre000m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           hto000m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           nto000m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           prestam0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           rre150m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           sre000m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           tre200m0                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           tre200mn                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           tre200mx                                  MeteoSchweiz
+SMA                                       Zürich / Fluntern           ure200m0                                  MeteoSchweiz
+
+Paramètres:
+-----------
+                                          Unité                                     Description
+gre000m0                                  W/m²                                      rayonnement global; moyenne mensuelle 
+hto000m0                                  cm                                        épaisseur totale de neige gisante; moyenne mensuelle
+nto000m0                                  %                                         couverture nuageuse totale; moyenne mensuelle
+prestam0                                  hPa                                       pression atmosphérique à l'altitude de la station (QFE); moyenne mensuelle
+rre150m0                                  mm                                        précipitations; somme mensuelle
+sre000m0                                  min                                       durée d'ensoleillement; somme mensuelle
+tre200m0                                  °C                                        température de l'air à 2 m du sol; moyenne mensuelle
+tre200mn                                  °C                                        température de l'air à 2 m du sol; minimum mensuel absolu
+tre200mx                                  °C                                        température de l'air à 2 m du sol; maximum mensuel absolu
+ure200m0                                  %                                         humidité de l'air relative à 2 m du sol; moyenne mensuelle
+
+

@@ -8,7 +8,7 @@ class Config(object):
     db_params = {
         'provider': 'postgres',
         'host': 'localhost',
-        'database': 'climatechange',
+        'database': 'climate_change',
         'user': 'fabianjordi',
         'password': 'xagri8-vyndYw-qihpyq',
     }

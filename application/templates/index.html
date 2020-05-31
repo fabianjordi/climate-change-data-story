@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% set dataSource = "Quelle: Meteo Schweiz (homogene Messreihen ab 1864), eigene Berechnungen" %}
+
+{% block content %}
+
+<article class="article">
+
+    <h1 class="title title--one">
+        <span class="title__intro">Was folgt auf den viertheissesten April seit 1950?</span>
+        <span class="title__main">Sind Sommerferien im Ausland überhaupt <del>möglich</del> <ins>nötig</ins>?</span>
+    </h1>
+
+    <div class="article__meta">
+        von <strong>Fabian Jordi</strong>, <time datetime="2020-06" class="time">Juni 2020</time>
+    </div>
+
+
+    <p class="paragraph paragraph--lead">
+        Der April 2020 ist der viertheisseste April der vergangenen 70 Jahre.
+        Wärmer war bisher nur der April der Jahre 2007, 2011 und 2018.
+        Auf den April folgte jeweils ein überdurchschnittlich heisser Sommer mit Höchsttemperaturen von 36.8 Grad.
+        Was erwartet uns diesen Sommer? Die Wetterdaten der vergangenen knapp 160 Jahre zeigen klare Trends.
+    </p>
+
+    <p class="paragraph">
+        Noch hält 2015 den Rekord.
+        Aber der Juli 2019 war dennoch so warm, so sonnig und so trocken wie kaum ein anderer seit Beginn der Wetteraufzeichnung.
+        Es reichte für einen Spitzenwert von 38.0 Grad Celsius in Sion.
+        Der letztjährige Juli ist zusammen mit jenen von 1983, 1994, 2006 und 2015 damit einer der fünftwärmsten seit Messbeginn;
+        mit durchschnittlichen 18.3 Grad Celsius pro Tag.
+    </p>
+
+    <h2 class="title title--two">Heiss, heisser, Juli</h2>
+
+    <div class="average-month-temperatures figure-wrapper">
+        <!--div class="average-month-temperature-selector">
+            <label class="label" for="average-month-temperature-selector__select">Wetterstation</label>
+            <select id="average-month-temperature-selector__select" class="select js-weatherstation-selector__select weatherstation-selector__select"></select>
+        </div-->
+
+        <figure class="figure" data-source="{{ dataSource }}">
+            <figcaption class="figure__caption">
+                Das sind die Durchschnittstemperaturen im Monat Juli in in der Schweiz seit Messbeginn 1864.
+        <em>Die fünf wärmsten Monate sind rot markiert.</em>
+            </figcaption>
+            <div class="average-month-temperatures__chart"></div>
+        </figure>
+    </div>
+
+    <p class="paragraph">
+        Das passt in einen Langzeittrend.
+        Denn seit 1864 hat sich die Schweiz langsam, aber stetig erwärmt.
+        Folgende Grafik veranschaulicht die Entwicklung:
+    </p>
+
+    <h2 class="title title--two">Es wird immer wärmer in der Schweiz</h2>
+
+    <div class="average-temperatures figure-wrapper">
+        <figure class="figure" data-source="{{ dataSource }}">
+            <figcaption class="figure__caption">Langfristig gehen die Temperaturen im Jahresdurchschnitt seit Beginn der Wetteraufzeichnungen nach oben.
+</figcaption>
+            <div class="average-temperatures__chart"></div>
+        </figure>
+    </div>
+
+    <p class="paragraph">
+        Im Mittel sind die Jahresdurchschnittstemperaturen angestiegen.
+        <code class="code"># TODO: Trendlinie berechnen und in der Grafik einfügen</code>
+    </p>
+
+    <p class="paragraph">
+        Die zuletzt gemessenen Temperaturen liegen immer häufiger über den Höchstwerten, die man früher beobachtete.
+    </p>
+
+    <p class="paragraph">
+        Betrachtet man die einzelnen Monate, gibt es ebenfalls Auffälligkeiten.
+        Etwa, dass seit <em>1864</em> jeder Monat insgesamt wärmer geworden ist.
+        Neun der zwölf wärmsten Monate verzeichneten Forscherinnen und Forscher dabei zwischen <em>2003 und 2018.
+        Wärmerekorde erzielten zuletzt in diesem Jahr die Monate April und Mai:</em>
+    </p>
+
+    <h2 class="title title--two">Auf den wärmsten Monat folgt ein noch wärmerer</h2>
+
+    <div class="figure-wrapper">
+        <figure class="figure" data-source="{{ dataSource }}">
+            <figcaption class="figure__caption"><em>Wärmste () und kälteste ()</em> Monate seit 1864. Die meisten Wärmerekorde wurden in den vergangenen 15 Jahren gesetzt, Kälterekorde gab es seit mehr als 75 Jahren nicht mehr.
+</figcaption>
+            <div class="temperatures_per_month_and_year__chart"></div>
+        </figure>
+    </div>
+
+    <p class="paragraph">
+        Die Schweiz wird wärmer, weil auch die Erde insgesamt wärmer wird.
+        Je nachdem, wie sich der globale Ausstoss an Kohlendioxid (CO₂) entwickelt, drohen langfristig mehr Hitzetage mit mehr als 30 Grad Celsius.
+    </p>
+
+    <p class="paragraph">
+        Die Zahlen zeigen: wir müssen uns auf einen erneut überdurchschnittlich warmen Sommer gefasst machen.
+        Die Temperaturen werden vielenorts erneut die 35 Grad Marke überschreiten und allenfalls werden erneut Temperaturrekorde gebrochen.
+    </p>
+
+    <p class="paragraph">
+        Um Sonne zu tanken und zu schwitzen, können die Sommerferien getrost in der Schweiz verbracht werden.
+    </p>
+
+    {# <h2 class="title title--two">Jedes Jahr als Klimakurve seit 1864</h2>
+
+    <p class="paragraph">
+        Seit Messungsbeginn wandeln sich die Temperaturen von Januar bis Dezember stetig.
+    </p>
+
+    <div class="temperatures-evolution figure-wrapper">
+        <div class="weatherstation-selector">
+            <label class="label" for="weatherstation-selector__select">Wetterstation</label>
+            <select id="weatherstation-selector__select" class="select js-weatherstation-selector__select weatherstation-selector__select"></select>
+        </div>
+
+        <figure class="figure">
+            <div class="temperatures-evolution__chart"></div>
+            <figcaption class="figure__caption">Quelle XXX, eigene Berechnungen</figcaption>
+        </figure>
+    </div>
+
+    <p class="paragraph">
+        <em>Die Zahl meteorologischer Katastrophen dürfte so oder so steigen.
+            Es geht dabei nicht nur um Dürren, sondern auch um Hochwasser und Starkregen.
+            "Wir Klimaforscher erklären es damit, dass mit den höheren Temperaturen mehr Energie in der Atmosphäre vorhanden ist.
+            Es ist auch weit mehr Wasser dort", sagt Harald Kunstmann, Klimaforscher vom Karlsruher Institut für Technologie.
+            "Damit können extremerer Niederschlag und extremere Stürme passieren."</em>
+    </p>
+
+    <p class="paragraph">
+        <em>Weltweit waren die vergangenen vier Jahre die wärmsten seit Beginn meteorologischer Aufzeichnungen im späten 19. Jahrhundert.
+        Das bestätigt auch der gerade veröffentlichte Jahresbericht der US-Klima- und Ozeanbehörde Noaa.
+            Das vergangene Jahr war demnach das drittwärmste Jahr seit Messbeginn.</em>
+    </p>#}
+
+</article>
+
+{% endblock %}
