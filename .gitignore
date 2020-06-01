@@ -274,3 +274,6 @@ dmypy.json
 cython_debug/
 
 /python3
+
+
+.DS_Store
