@@ -98,8 +98,7 @@ a:hover {
     grid-column: main;
     text-align: center;
 }
-.footer__inner::before,
-.footer__inner::after {
+.footer__inner::before {
     content: '';
     display: block;
     position: absolute;
@@ -109,10 +108,6 @@ a:hover {
     margin-left: -25%;
     height: 1px;
     background-color: rgb(230, 230, 230);
-}
-.footer__inner::after {
-    top: auto;
-    bottom: 0;
 }
 
 /* Basic styling */
@@ -235,44 +230,17 @@ svg {
 .axis--y text {
     color: #666;
 }
-
-
-
-
-
-
-
-
-
-
-
-.axis .domain {
-    /*display: none;*/
+.circle {
+}
+.circle--min {
+    fill: #0088a0;
+}
+.circle--max {
+    fill: #f54a2b;
 }
 
-
-
-.axis--x line {
-    stroke: #aaa;
+.months {
+    font-size: 9px;
+    font-family: 'Assistant', sans-serif;
 }
-
-.axis--activity .tick line {
-    display: none;
-}
-
-.axis--activity text {
-    font-size: 12px;
-    fill: #777;
-}
-
-.line {
-    fill: none;
-    stroke: blue;
-}
-
-.area {
-    fill: #448cab;
-}
-
-
 

@@ -2,7 +2,7 @@ function addBackground(svg, margin, height, width) {
     svg.append("rect")
         .attr("x", 0)
         .attr("y", margin.top + 1)
-        .attr("width", width)
+        .attr("width", width - margin.right)
         .attr("height", height - margin.bottom - margin.top - 1)
         .attr("fill", "rgb(248, 248, 248)");
 }
@@ -13,17 +13,17 @@ function addBackground(svg, margin, height, width) {
     let height = 100;
     let width = 500;
 
-    const svg = d3.select(".average-month-temperatures__chart").append('svg')
-        .attr("viewBox", [0, 0, width, height]);
+    const svg = d3.select('.average-month-temperatures__chart').append('svg')
+        .attr('viewBox', [0, 0, width, height]);
 
-    const dateFormat = d3.utcParse("%Y-%m-%d");
+    const dateFormat = d3.utcParse('%Y-%m-%d');
 
     let data = Object.assign(
         d3.json('/getAverageMonthTemperatures').then(data => {
 
             let yAxis = g => g
-                .attr("transform", `translate(${margin.left},0)`)
-                .attr("class", "axis axis--y")
+                .attr('transform', `translate(${margin.left},0)`)
+                .attr('class', 'axis axis--y')
                 .call(d3.axisRight(y)
                     .ticks(3)
                     .tickFormat(u => u + ' °C')
@@ -31,15 +31,15 @@ function addBackground(svg, margin, height, width) {
                 .call(g => g.select('.domain')
                     .remove())
                 .call(g => g.selectAll('.tick line')
-                    .attr("stroke-opacity", 0.25)
-                    .attr("stroke-dasharray", "1,1"))
+                    .attr('stroke-opacity', 0.25)
+                    .attr('stroke-dasharray', '1,1'))
                 .call(g => g.selectAll('.tick text')
-                    .attr("x", 0)
-                    .attr("dy", -3));
+                    .attr('x', 0)
+                    .attr('dy', -3));
 
             let xAxis = g => g
-                .attr("transform", `translate(0, ${height - margin.bottom})`)
-                .attr("class", "axis axis--x")
+                .attr('transform', `translate(0, ${height - margin.bottom})`)
+                .attr('class', 'axis axis--x')
                 .call(d3.axisBottom(x)
                     //.ticks(width / 60)
                     .ticks(d3.timeYear.every(10))
@@ -48,7 +48,7 @@ function addBackground(svg, margin, height, width) {
                 .call(g => g.select('.domain')
                     .remove())
                 .call(g => g.selectAll('.tick line')
-                    .attr("stroke-opacity", 0.25));
+                    .attr('stroke-opacity', 0.25));
 
             let y = d3.scaleLinear()
                 .domain([
@@ -65,28 +65,51 @@ function addBackground(svg, margin, height, width) {
                 .defined(d => !isNaN(d.value))
                 .x(d => x(dateFormat(d.date)))
                 .y(d => y(d.value))
-                .curve(d3.curveBasis);
+                /*.curve(d3.curveBasis)*/;
 
             addBackground(svg, margin, height, width);
 
-            svg.append("g")
-              .call(xAxis);
+            svg.append('g')
+                .call(xAxis);
 
-            svg.append("g")
-              .call(yAxis);
+            svg.append('g')
+                .call(yAxis);
 
-            svg.append("path")
-              .datum(data)
-              .attr("fill", "none")
-              .attr("stroke", "#777777")
-              .attr("stroke-width", 1.5)
-              .attr("stroke-linejoin", "round")
-              .attr("stroke-linecap", "round")
-              .attr("d", line);
+            svg.append('path')
+                .datum(data)
+                .attr('class', 'line')
+                .attr('fill', 'none')
+                .attr('stroke', '#777777')
+                .attr('stroke-width', 1.5)
+                .attr('stroke-linejoin', 'round')
+                .attr('stroke-linecap', 'round')
+                .attr('d', line);
+
+            let sortByValues = (data.sort(function(a, b) { return b.value - a.value }));
+
+            // show 6 hottest julys
+            svg.selectAll(null).data(data).enter()
+                .filter(d => (d.value >= sortByValues[5].value))
+                    .append('circle')
+                    .attr('class', 'circle circle--max')
+                    .attr('r', 3)
+                    .attr('cx', d => x(dateFormat(d.date)))
+                    .attr('cy', d => y(d.value));
+
+            // show 6 coldest julys
+            svg.selectAll(null).data(data).enter()
+                .filter(d => (d.value <= sortByValues[sortByValues.length - 6].value))
+                    .append('circle')
+                    .attr('class', 'circle circle--min')
+                    .attr('r', 3)
+                    .attr('cx', d => x(dateFormat(d.date)))
+                    .attr('cy', d => y(d.value));
+
         })
         .catch((error) => {
             throw error;
         }));
+
 }());
 
 
@@ -148,7 +171,13 @@ function addBackground(svg, margin, height, width) {
                 .defined(d => !isNaN(d.value))
                 .x(d => x(dateFormat(d.year)))
                 .y(d => y(d.value))
-                .curve(d3.curveBasis);
+                /*.curve(d3.curveBasis)*/;
+
+            let linearRegression = d3.regressionLinear()
+                .x(d => (dateFormat(d.year)))
+                .y(d => (d.value));
+
+            let res = linearRegression(data)
 
             addBackground(svg, margin, height, width);
 
@@ -166,6 +195,22 @@ function addBackground(svg, margin, height, width) {
               .attr("stroke-linejoin", "round")
               .attr("stroke-linecap", "round")
               .attr("d", line);
+
+
+            let res_line = d3.line()
+                  .x((d) => x(d[0]))
+                  .y((d) => y(d[1]));
+
+                svg.append("path")
+                  .datum(res)
+                  .attr("d", res_line)
+                  .attr("fill", "none")
+                  .attr("stroke", "#f54a2b")
+                  .attr("stroke-width", 1)
+                  .attr("stroke-linejoin", "round")
+                  .attr("stroke-linecap", "round")
+
+
         })
         .catch((error) => {
             throw error;
@@ -179,6 +224,20 @@ function addBackground(svg, margin, height, width) {
     let width = 500;
 
     const dateFormat = d3.utcParse("%Y-%m-%d");
+    const months = [
+        'Januar',
+        'Februar',
+        'März',
+        'April',
+        'Mai',
+        'Juni',
+        'Juli',
+        'August',
+        'September',
+        'Oktober',
+        'November',
+        'Dezember',
+    ]
 
     let data = Object.assign(
         d3.json('/getTemperaturesPerMonthAndYear').then(data => {
@@ -190,7 +249,7 @@ function addBackground(svg, margin, height, width) {
             data.forEach(function(node, i) {
 
                 let height = 44;
-                let margin = ({top: 8, right: 0, bottom: 8, left: 0});
+                let margin = ({top: 8, right: 60, bottom: 8, left: 0});
 
                 switch(i) {
                     case 0:
@@ -265,7 +324,7 @@ function addBackground(svg, margin, height, width) {
                     .y(d => {
                         return y(d.value);
                     })
-                    .curve(d3.curveBasis);
+                    /*.curve(d3.curveBasis)*/;
 
                 let svg = d3.select(".temperatures_per_month_and_year__chart")
                     .append('svg')
@@ -293,10 +352,39 @@ function addBackground(svg, margin, height, width) {
                     })
                     .attr("fill", "none")
                     .attr("stroke", "#777777")
-                    .attr("stroke-width", 1.5)
+                    .attr("stroke-width", 1)
                     .attr("stroke-linejoin", "round")
                     .attr("stroke-linecap", "round")
                     .attr("d", line);
+
+
+                let sortByValues = (node.values.sort(function(a, b) { return b.value - a.value }));
+
+                // show hottest month
+                svg.selectAll(null).data(() =>  node.values).enter()
+                    .filter(d => (d.value >= sortByValues[0].value))
+                        .append('circle')
+                        .attr('class', 'circle circle--max')
+                        .attr('r', 3)
+                        .attr('cx', d => x(dateFormat(d.date)))
+                        .attr('cy', d => y(d.value));
+
+                // show coldest month
+                svg.selectAll(null).data(() =>  node.values).enter()
+                    .filter(d => (d.value <= sortByValues[sortByValues.length - 1].value))
+                        .append('circle')
+                        .attr('class', 'circle circle--min')
+                        .attr('r', 3)
+                        .attr('cx', d => x(dateFormat(d.date)))
+                        .attr('cy', d => y(d.value));
+
+
+                svg.append('text')
+                    .attr('x', width - margin.right + 5)
+                    .attr('y', i === 0 ? 28 : 16)
+                    .attr('class', 'months')
+                    //.attr("dy", ".71em")
+                    .text(months[i]);
 
             })
         })

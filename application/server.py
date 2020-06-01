@@ -94,10 +94,14 @@ def get_average_month_temperatures2():
                                                     INNER JOIN
                                                     climaticvariabledimension AS cvd
                                                     ON cvd.id = cf.climatic_variable_dimension
+                                                        INNER JOIN
+                                                        weatherstation AS ws
+                                                        ON ws.id = cf.weather_station
                                             WHERE cvd.name = 'tre200m0' 
                                                 AND EXTRACT(MONTH FROM date) = 7
                                                 AND EXTRACT(YEAR FROM date) != date_part('year', CURRENT_DATE)
                                                 AND EXTRACT(YEAR FROM date) >= 1864
+                                                AND ws.altitude < 800
                                             /*AND td.year != date_part('year', CURRENT_DATE)*/
                                             GROUP BY td.date, td.year, td.month
                                             ORDER BY td.year) t""")
@@ -151,10 +155,15 @@ def get_temperatures_per_month_and_year():
                                                     INNER JOIN
                                                     climaticvariabledimension AS cvd
                                                     ON cvd.id = cf.climatic_variable_dimension
+                                                        INNER JOIN
+                                                        weatherstation AS ws
+                                                        ON ws.id = cf.weather_station
                                             WHERE cvd.name = 'tre200m0' 
                                                 AND EXTRACT(MONTH FROM date) < 13
                                                 AND EXTRACT(YEAR FROM date) != date_part('year', CURRENT_DATE)
                                                 AND EXTRACT(YEAR FROM date) >= 1864
+                                                AND ws.altitude < 900
+                                                AND ws.altitude > 200
                                             GROUP BY td.date, td.month
                                             ORDER BY td.date) t""")
 

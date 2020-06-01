@@ -41,15 +41,14 @@
         <figure class="figure" data-source="{{ dataSource }}">
             <figcaption class="figure__caption">
                 Das sind die Durchschnittstemperaturen im Monat Juli in in der Schweiz seit Messbeginn 1864.
-        <em>Die fünf wärmsten Monate sind rot markiert.</em>
+                Die sechs wärmsten Monate sind rot, die sechst kältesten blau markiert.
             </figcaption>
             <div class="average-month-temperatures__chart"></div>
         </figure>
     </div>
 
     <p class="paragraph">
-        Das passt in einen Langzeittrend.
-        Denn seit 1864 hat sich die Schweiz langsam, aber stetig erwärmt.
+        Das passt in einen Langzeittrend: Seit 1864 hat sich die Schweiz stetig erwärmt.
         Folgende Grafik veranschaulicht die Entwicklung:
     </p>
 
@@ -65,25 +64,27 @@
 
     <p class="paragraph">
         Im Mittel sind die Jahresdurchschnittstemperaturen angestiegen.
-        <code class="code"># TODO: Trendlinie berechnen und in der Grafik einfügen</code>
-    </p>
-
-    <p class="paragraph">
+        {# <code class="code"># TODO: Trendlinie berechnen und in der Grafik einfügen</code> #}
         Die zuletzt gemessenen Temperaturen liegen immer häufiger über den Höchstwerten, die man früher beobachtete.
     </p>
 
     <p class="paragraph">
-        Betrachtet man die einzelnen Monate, gibt es ebenfalls Auffälligkeiten.
-        Etwa, dass seit <em>1864</em> jeder Monat insgesamt wärmer geworden ist.
-        Neun der zwölf wärmsten Monate verzeichneten Forscherinnen und Forscher dabei zwischen <em>2003 und 2018.
-        Wärmerekorde erzielten zuletzt in diesem Jahr die Monate April und Mai:</em>
+        Betrachtet man die einzelnen Monate, gibt es ebenfalls Auffälligkeiten:
+        Seit 1864 wird jeder Monat – in der langen Frist – kontinuierlich wärmer.
+        Die meisten wärmsten Monaten liegen fast alle in den letzten 20 bis 30 Jahren.
+        Wärmerekorde erzielten in jüngster Vergangenheit der Januar und der Juli.
     </p>
 
     <h2 class="title title--two">Auf den wärmsten Monat folgt ein noch wärmerer</h2>
 
     <div class="figure-wrapper">
         <figure class="figure" data-source="{{ dataSource }}">
-            <figcaption class="figure__caption"><em>Wärmste () und kälteste ()</em> Monate seit 1864. Die meisten Wärmerekorde wurden in den vergangenen 15 Jahren gesetzt, Kälterekorde gab es seit mehr als 75 Jahren nicht mehr.
+            <figcaption class="figure__caption">
+                Wärmste
+                <svg viewBox="" width="12" height="12" style="width: 12px; height: 12px; display: inline;"><circle class="circle circle--max" r="6" cx="6" cy="6"></circle></svg>
+                und kälteste <svg viewBox="" width="12" height="12" style="width: 12px; height: 12px; display: inline;"><circle class="circle circle--min" r="6" cx="6" cy="6"></circle></svg>
+                Monate seit 1864.
+                Die meisten Wärmerekorde wurden in den vergangenen 20 Jahren gesetzt, Kälterekorde gab es seit knapp 80 Jahren nicht mehr.
 </figcaption>
             <div class="temperatures_per_month_and_year__chart"></div>
         </figure>
