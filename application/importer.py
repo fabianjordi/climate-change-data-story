@@ -1,19 +1,12 @@
 import pandas as pd
-import datetime as dt
-import os
-import math
-import re
 import requests
 import urllib
-import time
 from bs4 import BeautifulSoup
-from io import StringIO
 import posixpath
-import logging
 from application.helpers import *
 from pony import orm
 from application.models import *
-from application.config import *
+from config import *
 
 
 def setup_climatic_variable_dimension_table():
@@ -125,7 +118,7 @@ def import_meteoschweiz_homogene_messreihen_ab_1864():
         stations_names.remove('schweiz')  # remove 'schweiz' as it is the mean of all station data
         logging.info(stations_names)
 
-        station_txt_url_pattern = data['assets']['documents']['files'][0]['filepattern']
+        station_txt_url_pattern = data['src']['documents']['files'][0]['filepattern']
         logging.info(station_txt_url_pattern)
 
         stations_urls_list = [urllib.parse.urljoin(url, station_txt_url_pattern.replace('[STATION]', station_url)) for
@@ -427,8 +420,7 @@ if __name__ == '__main__':
 
     import_swiss_weather_stations()
 
-    # No need if importing the following data
-    # since data is already stored in the dababase
+    # No need importing the following data since data is already stored in the dababase
     # import_meteoschweiz_homogene_messreihen_ab_1864()
 
     import_nbcn_monthly_values()

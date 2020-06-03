@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="de-CH">
+<html lang="de-CH" class="{{ template }}">
 
     <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Climate Change – Data Story</title>
     <style>
         @import url('https://necolas.github.io/normalize.css/8.0.1/normalize.css');
         @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;800&family=Rufina&display=swap');
-        @import url('{{ url_for('static', filename='assets/styles.css') }}');
+        {% assets "scss_datastory" %}
+            @import url('{{ ASSET_URL }}');
+        {% endassets %}
     </style>
+
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="https://unpkg.com/d3-regression@1.3.4/dist/d3-regression.min.js"></script>
 
@@ -27,6 +32,6 @@
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='assets/main.js') }}"></script>
-
+    <script src="{{ url_for('static', filename='dist/js/main.js') }}"></script>
+    {% include 'analytics.jinja2' %}
 </html>

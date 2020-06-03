@@ -1,16 +1,7 @@
-from flask import Flask, render_template, jsonify, request
-import logging
-import requests
-from application.helpers import *
-from pony import orm
-from application.models import *
-from application.config import *
-import datetime as dt
-
-app = Flask(__name__)
-
-db.bind(**config.db_params)
-db.generate_mapping()
+"""Core Flask app routes."""
+from flask import render_template, jsonify
+from flask import current_app as app
+from .models import *
 
 
 def get_json(data):
@@ -24,9 +15,15 @@ def get_json(data):
 
 @app.route('/')
 @app.route('/index')
-@db_session
-def index():
-    return render_template('index.html')
+def home():
+    """Landing page."""
+    return render_template(
+        'index.jinja2',
+        title='Plotly Dash Flask Tutorial',
+        description='Embed Plotly Dash into your Flask applications.',
+        template='home-template',
+        body="This is a homepage served with Flask."
+    )
 
 
 @app.route('/getWeatherStations')
@@ -168,7 +165,3 @@ def get_temperatures_per_month_and_year():
                                             ORDER BY td.date) t""")
 
     return get_json(climatic_facts)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

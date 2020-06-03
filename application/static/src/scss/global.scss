@@ -1,0 +1,35 @@
+html {
+    font-size: 16px;
+    line-height: 1.7;
+
+    -ms-touch-action: none !important;
+
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-text-size-adjust: 100%;
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern";
+    -moz-font-feature-settings: "kern=1";
+    font-feature-settings: "kern";
+
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+    padding: 0;
+
+    -webkit-overflow-scrolling: touch;
+
+    scroll-behavior: smooth;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+
+    line-height: inherit;
+    font-weight: normal;
+}
