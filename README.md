@@ -5,13 +5,13 @@
 ### Datenstory
 Website: [http://shielded-stream-23684.herokuapp.com](http://shielded-stream-23684.herokuapp.com)
 
-Die Berechnungen für die Datenstory finden sich je im [Jupyter Notebook](/Notebook/EDA%20for%20Datenstory.ipynb) und im entsprechenden [PDF]().
+Die Berechnungen für die Datenstory finden sich je im [Jupyter Notebook](/Notebook/EDA%20for%20Datenstory.ipynb) und im entsprechenden [HTML](/Notebook/EDA-for-Datenstory.html).
 
 
 ### Interaktives Dashboard
 Website: [http://shielded-stream-23684.herokuapp.com/dashboard](http://shielded-stream-23684.herokuapp.com/dashboard)
 
-Die explorative Datenanalyse findet sich im [Jupyter Notebook](/Notebook/EDA.ipynb) und im entsprechenden [PDF]().
+Die explorative Datenanalyse findet sich im [Jupyter Notebook](/Notebook/EDA.ipynb) und im entsprechenden [HTML](/Notebook/EDA.html).
 
 ## Gemacht mit
 
