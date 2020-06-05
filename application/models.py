@@ -57,5 +57,4 @@ def setup(config_name):
     )
 
     db.generate_mapping()
-    print(db)
-    print(db_session)
+
