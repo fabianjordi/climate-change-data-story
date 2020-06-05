@@ -10,7 +10,7 @@ from config import *
 import logging
 
 
-config = config[os.getenv('FLASK_CONFIG') or 'default']
+config = config[os.getenv('FLASK_ENV') or 'default']
 
 
 def setup_climatic_variable_dimension_table():
@@ -414,7 +414,14 @@ if __name__ == '__main__':
         populate_database()"""
 
     orm.set_sql_debug(config.DEBUG)
-    db.bind(**config.DB_PARAMS)
+    db.bind(
+        provider=config.DB_PROVIDER,
+        host=config.DB_HOST,
+        dbname=config.DB_NAME,
+        user=config.DB_USER,
+        password=config.DB_PASSWORD,
+        port=config.DB_PORT,
+    )
     db.generate_mapping(create_tables=True)
     db.drop_all_tables(with_all_data=True)
     db.create_tables()

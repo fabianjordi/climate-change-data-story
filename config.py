@@ -60,7 +60,7 @@ class HerokuConfig(ProductionConfig):
 
     SSL_REDIRECT = True if os.environ.get('DYNO') else False
 
-    @classmethod
+    """@classmethod
     def init_app(cls, app):
         ProductionConfig.init_app(app)
 
@@ -73,7 +73,7 @@ class HerokuConfig(ProductionConfig):
         from logging import StreamHandler
         file_handler = StreamHandler()
         file_handler.setLevel(logging.INFO)
-        app.logger.addHandler(file_handler)
+        app.logger.addHandler(file_handler)"""
 
 
 class DockerConfig(ProductionConfig):
