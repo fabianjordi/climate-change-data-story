@@ -1,1 +1,1 @@
-web: gunicorn wsgy.py
+web: python wsgy.py
