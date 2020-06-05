@@ -7,6 +7,10 @@ from application.helpers import *
 from pony import orm
 from application.models import *
 from config import *
+import logging
+
+
+config = config[os.getenv('FLASK_CONFIG') or 'default']
 
 
 def setup_climatic_variable_dimension_table():
@@ -68,7 +72,7 @@ def import_swiss_weather_stations():
 
     logging.info('Start importing swiss weather stations …')
 
-    file = posixpath.join(config.get_data_folder(), "stations_CH2018_meta.csv")
+    file = posixpath.join(config.DATA_PATH, "stations_CH2018_meta.csv")
     # STATION_NAME,NAT_ABBR,LATITUDE,LONGITUDE,XCOORD,YCOORD,ELEVATION
     column_names = ['name', 'abbr', 'latitude', 'longitude', 'xcoord', 'ycoord', 'altitude']
     df = pd.read_csv(file, delimiter=',', header=0, names=column_names)
@@ -267,7 +271,7 @@ def import_nbcn_monthly_values():
 
     for file in files:
 
-        file_path = posixpath.join(config.get_data_folder(), file['path'])
+        file_path = posixpath.join(config.DATA_PATH, file['path'])
         # column_names = ['stn', 'time', 'gre000m0', 'hto000m0', 'nto000m0', 'prestam0', 'rre150m0', 'sre000m0', 'tre200m0', 'tre200mn', 'tre200mx', 'ure200m0']
         df = pd.read_csv(file_path, delimiter=';', skiprows=file['skiprows'], header=0)
         df = df.dropna()
@@ -409,8 +413,8 @@ if __name__ == '__main__':
     """if ClimaticFacts.select().first() is None:
         populate_database()"""
 
-    orm.set_sql_debug(config.SQL_DEBUG)
-    db.bind(**config.db_params)
+    orm.set_sql_debug(config.DEBUG)
+    db.bind(**config.DB_PARAMS)
     db.generate_mapping(create_tables=True)
     db.drop_all_tables(with_all_data=True)
     db.create_tables()

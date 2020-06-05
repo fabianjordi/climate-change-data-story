@@ -1,7 +1,7 @@
 """Core Flask app routes."""
 from flask import render_template, jsonify
 from flask import current_app as app
-from .models import *
+from application.models import *
 
 
 def get_json(data):

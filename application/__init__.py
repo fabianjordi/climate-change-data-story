@@ -1,8 +1,8 @@
 """Initialize Flask app"""
 from flask import Flask
 from flask_assets import Environment
+from application.models import *
 from .models import *
-from config import *
 
 
 def create_app(config_name):
@@ -15,11 +15,10 @@ def create_app(config_name):
     assets = Environment()
     assets.init_app(app)
 
-    with app.app_context():
+    # setup db connection and schema
+    setup(config_name)
 
-        # Connect to DB and generate mapping
-        db.bind(**config[config_name].DB_PARAMS)
-        db.generate_mapping()
+    with app.app_context():
 
         # Import parts of our core Flask app
         from . import routes
@@ -27,6 +26,7 @@ def create_app(config_name):
 
         # Import Dash application
         from .dashboard.dashboard import create_dashboard
+
         app = create_dashboard(app)
 
         # Compile static src

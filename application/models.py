@@ -1,5 +1,6 @@
 from datetime import date
 from pony.orm import *
+from config import *
 
 
 db = Database()
@@ -40,3 +41,13 @@ class TimeDimension(db.Entity):
     season = Optional(int)
     year = Optional(int)
     climatic_facts = Set(ClimaticFacts)
+
+
+def setup(config_name):
+    """ Set up the database """
+    # db.bind(**database_config, create_db=True)
+    # db.generate_mapping(create_tables=True)
+    db.bind(**config[config_name].DB_PARAMS)
+    db.generate_mapping()
+    print(db)
+    print(db_session)
