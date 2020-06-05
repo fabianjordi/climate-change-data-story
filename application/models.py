@@ -47,7 +47,15 @@ def setup(config_name):
     """ Set up the database """
     # db.bind(**database_config, create_db=True)
     # db.generate_mapping(create_tables=True)
-    db.bind(**config[config_name].DB_PARAMS)
+    db.bind(
+        provider=config[config_name].DB_PROVIDER,
+        host=config[config_name].DB_HOST,
+        dbname=config[config_name].DB_NAME,
+        user=config[config_name].DB_USER,
+        password=config[config_name].DB_PASSWORD,
+        port=config[config_name].DB_PORT,
+    )
+
     db.generate_mapping()
     print(db)
     print(db_session)

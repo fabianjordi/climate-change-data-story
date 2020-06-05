@@ -7,49 +7,27 @@ class Config:
 
     # Update interval
     GRAPH_INTERVAL = os.environ.get("GRAPH_INTERVAL", 60000)  # 60 seconds TODO: change to 60seconds
-    WEBAPP_TITLE = "Climate Change Data Story"
+    WEBAPP_TITLE = "Climate Change Datenstory"
 
     # PostgreSQL Parameters
-    DB_PARAMS = {
-        'provider': 'postgres',
-        'host': 'localhost',
-        'database': 'climate_change',
-        'user': 'fabianjordi',
-        'password': 'xagri8-vyndYw-qihpyq',
-    }
+    DB_PROVIDER = 'postgres'
+    DB_HOST = 'localhost'
+    DB_NAME = 'climate_change'
+    DB_USER = 'fabianjordi'
+    DB_PASSWORD = 'xagri8-vyndYw-qihpyq'
+    DB_PORT = 5432
 
     # data_folder = '.' + os.sep + 'data'
     PATH = pathlib.Path(__file__).parent
     DATA_PATH = PATH.joinpath("data").resolve()
 
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
-    MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
-    MAIL_PORT = int(os.environ.get('MAIL_PORT', '587'))
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in \
-        ['true', 'on', '1']
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'
-    FLASKY_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
-    FLASKY_ADMIN = os.environ.get('FLASKY_ADMIN')
     SSL_REDIRECT = False
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_RECORD_QUERIES = True
-    FLASKY_POSTS_PER_PAGE = 20
-    FLASKY_FOLLOWERS_PER_PAGE = 50
-    FLASKY_COMMENTS_PER_PAGE = 30
-    FLASKY_SLOW_DB_QUERY_TIME = 0.5
 
     """Flask configuration variables."""
     # General Config
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     FLASK_APP = os.environ.get('FLASK_APP')
     FLASK_ENV = os.environ.get('FLASK_ENV')
-
-    # Assets
-    """LESS_BIN = os.environ.get('LESS_BIN')
-    ASSETS_DEBUG = os.environ.get('ASSETS_DEBUG')
-    LESS_RUN_IN_DEBUG = os.environ.get('LESS_RUN_IN_DEBUG')"""
 
     # Static Assets
     STATIC_FOLDER = os.environ.get('STATIC_FOLDER')
@@ -62,47 +40,24 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+    FLASK_DEBUG = True
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
-
-
-class TestingConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-        'sqlite://'
-    WTF_CSRF_ENABLED = False
 
 
 class ProductionConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
-
-    @classmethod
-    def init_app(cls, app):
-        Config.init_app(app)
-
-        # email errors to the administrators
-        import logging
-        from logging.handlers import SMTPHandler
-        credentials = None
-        secure = None
-        if getattr(cls, 'MAIL_USERNAME', None) is not None:
-            credentials = (cls.MAIL_USERNAME, cls.MAIL_PASSWORD)
-            if getattr(cls, 'MAIL_USE_TLS', None):
-                secure = ()
-        mail_handler = SMTPHandler(
-            mailhost=(cls.MAIL_SERVER, cls.MAIL_PORT),
-            fromaddr=cls.FLASKY_MAIL_SENDER,
-            toaddrs=[cls.FLASKY_ADMIN],
-            subject=cls.FLASKY_MAIL_SUBJECT_PREFIX + ' Application Error',
-            credentials=credentials,
-            secure=secure)
-        mail_handler.setLevel(logging.ERROR)
-        app.logger.addHandler(mail_handler)
+    DEBUG = False
 
 
 class HerokuConfig(ProductionConfig):
+
+    # PostgreSQL Parameters
+    DB_PROVIDER = os.environ.get('DB_PROVIDER')
+    DB_HOST = os.environ.get('DB_HOST')
+    DB_NAME = os.environ.get('DB_NAME')
+    DB_USER = os.environ.get('DB_USER')
+    DB_PASSWORD = os.environ.get('DB_PASSWORD')
+    DB_PORT = os.environ.get('DB_PORT')
+
     SSL_REDIRECT = True if os.environ.get('DYNO') else False
 
     @classmethod
@@ -134,26 +89,11 @@ class DockerConfig(ProductionConfig):
         app.logger.addHandler(file_handler)
 
 
-class UnixConfig(ProductionConfig):
-    @classmethod
-    def init_app(cls, app):
-        ProductionConfig.init_app(app)
-
-        # log to syslog
-        import logging
-        from logging.handlers import SysLogHandler
-        syslog_handler = SysLogHandler()
-        syslog_handler.setLevel(logging.INFO)
-        app.logger.addHandler(syslog_handler)
-
-
 config = {
     'development': DevelopmentConfig,
-    'testing': TestingConfig,
     'production': ProductionConfig,
     'heroku': HerokuConfig,
     'docker': DockerConfig,
-    'unix': UnixConfig,
 
     'default': DevelopmentConfig
 }
